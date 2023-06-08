@@ -1,0 +1,18 @@
+%{
+#include<stdio.h>
+%}
+
+%%
+"<"[^>]*">" {fprintf(yyout,"%s\n",yytext);}
+. ;
+%%
+
+int main()
+{
+   yyin=fopen("b.txt","r");
+   yyout=fopen("output.txt","w");
+   yylex();
+   fclose(yyin);
+   fclose(yyout);
+   return 0;
+}
