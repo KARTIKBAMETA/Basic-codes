@@ -1,0 +1,30 @@
+%{
+  #include<stdio.h>
+  int lines=0;
+  int spaces=0;
+  int tabs=0;
+  int digit=0;
+  int character=0;
+  int s_char=0;
+%}
+
+%%
+
+[\n] {++lines;}
+[" "] {++spaces;};
+["\t"] {++tabs;}
+[a-zA-Z] {++character;}
+[0-9] {++digit;}
+
+%%
+
+int main()
+{
+    yylex();
+    printf("lines=%d \n",lines);
+    printf("spaces=%d \n",spaces);
+    printf("tabs=%d \n",tabs);
+    printf("character=%d \n",character);
+    printf("digit=%d \n",digit);
+    return 0;
+}

@@ -1,0 +1,25 @@
+%{
+#include<stdio.h>
+int character=0;
+int word=0;
+int space=0;
+int line=0;
+%}
+
+%%
+[a-zA-z]+ {++word ; character+=yyleng;}
+[\t] {++space ; ++character;}
+[\n] {++character ;++line;}
+[.] {++character;}
+%%
+
+int main()
+{
+yyin=fopen("input.txt","r");
+yylex();
+fclose(yyin);
+printf("\n spaces=%d",space);
+printf("\n character=%d",character);
+printf("\n word=%d",word);
+printf("\n line=%d",line);
+return 0;
